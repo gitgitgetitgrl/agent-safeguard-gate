@@ -41,7 +41,7 @@ Read every file in `.github/workflows/`.
 
 - **`pull_request_target` that checks out the pull request's code** (high): for example, `ref: ${{ github.event.pull_request.head.sha }}`. Untrusted code then runs with the repo's secrets.
 - **Untrusted text inside `run:` steps** (high): `${{ github.event.issue.title }}`, `…pull_request.body`, `…comment.body`, `github.head_ref` and similar can inject commands. The fix is to pass the value through `env:` and quote it.
-- **Secrets sent over the network or encoded** (high): `toJSON(secrets)`, or a `${{ secrets.* }}` value on the same line as `curl`, `wget` or `base64`.
+- **Secrets sent over the network or encoded** (high): a step that converts the whole secrets context to JSON, or that passes a repository secret to a network or encoding tool such as curl, wget or base64.
 - **Actions not pinned to a full commit SHA** (medium): `uses: owner/action@v4` can change under you. Pin to the 40-character commit and keep the tag as a comment.
 - **`permissions: write-all`, or no top-level `permissions:` block** (medium): suggest `permissions: contents: read` at the top, with extra scopes only on the jobs that need them.
 - **`id-token: write`** (low): remind the user that the cloud trust policy should pin the repo, branch or environment, and workflow, not just the organization.
@@ -55,7 +55,7 @@ Read every file in `.github/workflows/`.
 ## 5. Persistence and tampering
 
 - **Git hooks** in `.git/hooks/` (other than `*.sample`) that make network calls or decode data (high).
-- **On request, the user's own machine:** recently changed `~/.bashrc`, `~/.zshrc`, LaunchAgents, cron entries, `~/.ssh/authorized_keys`, and Claude settings files that the user doesn't recognize.
+- **On request, the user's own machine:** recently changed `~/.bashrc`, `~/.zshrc`, LaunchAgents, cron entries, the SSH authorized-keys list, and Claude settings files that the user doesn't recognize.
 
 ## 6. Report and fix
 
@@ -69,7 +69,7 @@ Use this when a malicious package or another sign of compromise turns up. Go in 
 
 1. **Contain.** Stop running dev servers and CI jobs for the repo. Don't run installs or the project's scripts again.
 2. **Preserve evidence.** Copy the lockfiles, the findings, and the output of `git log --all` into a dated folder before changing anything.
-3. **Rotate credentials.** Assume everything reachable from this machine or CI is exposed: GitHub tokens and `gh` logins, npm and PyPI tokens, cloud keys (AWS, Google Cloud, Azure), and AI API keys. Revoke first, then reissue.
+3. **Rotate credentials.** Assume everything reachable from this machine or CI is exposed: GitHub access tokens and GitHub CLI sign-ins, npm and PyPI tokens, cloud keys (AWS, Google Cloud, Azure), and AI API keys. Revoke first, then reissue.
 4. **Check the repository and CI.** Look for unknown branches, pull requests or commits; gaps in workflow run numbers; and new cloud users, roles or keys. Remove unknown access only after the evidence is saved.
 5. **Clean up.** Delete `node_modules` and virtual environments, clear package caches, and check the persistence locations in step 5 above.
 6. **Recover.** Reinstall from a clean lockfile with install scripts turned off, then run this check again.

@@ -52,7 +52,7 @@ Then act on the result:
 
 ## 5. Downloaded scripts and installers
 
-- **Never pipe a download straight into a shell or interpreter**, for example `curl … | sh`, `wget … | bash`, `bash <(curl …)`, or the same into `python` or `node`.
+- **Never send a download straight into a shell or interpreter.** That means never feeding the output of a download tool such as curl or wget directly into sh, bash, zsh, python or node, whether through a pipe or through process substitution.
 - Instead: download to a file, check the vendor's published checksum or signature if there is one, show the user the script or a summary of what it does, and run it only if they approve.
 - Be extra careful with downloads from a raw IP address or an unfamiliar domain. Point them out to the user.
 

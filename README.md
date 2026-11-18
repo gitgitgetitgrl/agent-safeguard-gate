@@ -15,6 +15,8 @@ It also adds a skill that scans a repo for vulnerable dependencies, leaked secre
 
 **Where it works:** the always-on hook runs in Claude Code and Cowork. In claude.ai chat, only the scan skill loads, because chat doesn't run plugin hooks.
 
+**Lite edition:** [`lite/`](lite/) holds **Agent Safeguard Lite**, an instructions-only version with no hooks or scripts. It works everywhere, including claude.ai chat, but relies on Claude following its checklists instead of blocking anything automatically. Install it with `claude plugin install agent-safeguard-lite@agent-safeguard` after adding the marketplace below.
+
 ## Install
 
 From Claude Code, in your terminal:

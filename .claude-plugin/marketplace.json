@@ -9,6 +9,11 @@
       "name": "agent-safeguard-gate",
       "source": "./",
       "description": "Always-on guardrail for Claude Code that blocks risky package installs, pipe-to-shell downloads, credential leaks and unsafe CI edits before they run."
+    },
+    {
+      "name": "agent-safeguard-lite",
+      "source": "./lite",
+      "description": "Instructions-only edition: teaches Claude to vet packages, downloads and repos before trusting them. No hooks or scripts, so it also works in claude.ai chat."
     }
   ]
 }

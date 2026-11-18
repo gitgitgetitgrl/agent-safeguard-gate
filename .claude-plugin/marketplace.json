@@ -1,0 +1,14 @@
+{
+  "name": "agent-safeguard",
+  "description": "Supply-chain guardrails for Claude Code",
+  "owner": {
+    "name": "gitgitgetitgrl"
+  },
+  "plugins": [
+    {
+      "name": "agent-safeguard-gate",
+      "source": "./",
+      "description": "Always-on guardrail for Claude Code that blocks risky package installs, pipe-to-shell downloads, credential leaks and unsafe CI edits before they run."
+    }
+  ]
+}

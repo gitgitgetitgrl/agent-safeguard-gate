@@ -1,0 +1,14 @@
+{
+  "name": "agent-safeguard-gate",
+  "displayName": "Agent Safeguard Gate",
+  "version": "1.0.0",
+  "description": "Always-on guardrail for Claude Code that blocks risky package installs, pipe-to-shell downloads, credential leaks and unsafe CI edits before they run.",
+  "author": {
+    "name": "gitgitgetitgrl"
+  },
+  "homepage": "https://github.com/gitgitgetitgrl/agent-safeguard-gate",
+  "repository": "https://github.com/gitgitgetitgrl/agent-safeguard-gate",
+  "license": "MIT",
+  "icon": "./.claude-plugin/icon.png",
+  "keywords": ["security", "supply-chain", "npm", "pypi", "github-actions", "osv"]
+}

@@ -1,0 +1,13 @@
+{
+  "_comment": "Campaign indicators (branch names, PR titles, commit messages, workflow strings, packages, domains). Ships empty: add entries from published advisories to ~/.security-gate/iocs.local.json, which is merged with this file and kept across plugin updates.",
+  "updated": "2026-11-17",
+  "git_branches": [],
+  "pr_titles": [],
+  "commit_messages": [],
+  "workflow_strings": [],
+  "blocked_packages": {
+    "npm": [],
+    "PyPI": []
+  },
+  "blocked_domains": []
+}
